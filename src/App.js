@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import CitySelector from "./components/citySelector";
+import CityCard from "./components/cityCard";
 
 function App() {
+  const [currentCity, setCurrentCity] = useState("");
+
+  function updateCity(newCity) {
+    console.log(currentCity);
+    setCurrentCity(newCity);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main_container">
+      <CitySelector updateCity={updateCity} />
+      {currentCity ? <CityCard city={currentCity} /> : <p>Город не выбран</p>}
     </div>
   );
 }
